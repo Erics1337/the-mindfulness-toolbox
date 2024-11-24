@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { getBlogPost } from '@/lib/contentful';
+import { Metadata } from 'next';
 
 export const revalidate = 3600; // Revalidate every hour
 
@@ -67,10 +68,13 @@ interface Props {
   params: {
     slug: string;
   };
+  searchParams: { [key: string]: string | string[] | undefined };
 }
 
 // Add generateMetadata function for better SEO
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata(
+  { params }: Props
+): Promise<Metadata> {
   const slug = params?.slug;
   if (!slug) return { title: 'Blog Post Not Found' };
   
@@ -88,7 +92,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-const BlogPostPage = async ({ params }: { params: { slug: string } }) => {
+export default async function BlogPostPage({ params }: Props) {
   const slug = params?.slug;
   if (!slug) return null;
   
@@ -206,5 +210,3 @@ const BlogPostPage = async ({ params }: { params: { slug: string } }) => {
     </div>
   );
 }
-
-export default BlogPostPage;

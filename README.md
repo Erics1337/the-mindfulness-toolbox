@@ -43,6 +43,19 @@ yarn dev
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
+## Environment Variables
+
+Copy `.env.example` to `.env.local` and fill in the values:
+
+### Contentful Configuration
+- `CONTENTFUL_SPACE_ID`: Your Contentful space ID
+- `CONTENTFUL_ACCESS_TOKEN`: Your Contentful access token
+
+### SendGrid Configuration
+- `SENDGRID_API_KEY`: Your SendGrid API key
+- `SENDGRID_FROM_EMAIL`: Your verified sender email in SendGrid
+- `CONTACT_EMAIL`: Email address where you want to receive contact form submissions
+
 ## Project Structure
 
 ```
