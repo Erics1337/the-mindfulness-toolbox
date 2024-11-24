@@ -6,22 +6,28 @@ import Image from 'next/image';
 
 const testimonials = [
   {
-    quote: "The Mindfulness Toolbox has transformed our school's approach to emotional wellness. Our students are more focused and emotionally aware.",
+    quote: "The Mindfulness Toolbox has transformed our classroom environment. The students are more focused, calmer, and better equipped to handle their emotions.",
     author: "Sarah Johnson",
-    role: "Elementary School Principal",
-    image: "/images/testimonials/principal.jpg"
+    role: "Elementary School Teacher",
+    image: "/images/testimonial-1.jpg"
   },
   {
-    quote: "As a yoga studio owner, partnering with The Mindfulness Toolbox has helped us expand our youth programs significantly.",
-    author: "Michael Chen",
-    role: "Studio Owner",
-    image: "/images/testimonials/studio-owner.jpg"
+    quote: "As a school counselor, I've seen remarkable improvements in students' emotional regulation after implementing these mindfulness practices.",
+    author: "Emily Chen",
+    role: "School Counselor",
+    image: "/images/testimonial-2.jpg"
   },
   {
-    quote: "The curriculum is engaging and age-appropriate. Our teachers have noticed improved classroom behavior and concentration.",
-    author: "Lisa Martinez",
-    role: "School District Administrator",
-    image: "/images/testimonials/administrator.jpg"
+    quote: "The program's approach to mindfulness is both practical and engaging. It's made a real difference in how our school addresses student well-being.",
+    author: "Michael Rodriguez",
+    role: "School Principal",
+    image: "/images/testimonial-3.jpg"
+  },
+  {
+    quote: "My children have benefited immensely from these mindfulness techniques. They're more self-aware and better at managing stress.",
+    author: "Lisa Thompson",
+    role: "Parent",
+    image: "/images/testimonial-4.jpg"
   }
 ];
 

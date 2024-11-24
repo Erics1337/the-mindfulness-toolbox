@@ -1,8 +1,32 @@
 import React from 'react';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { getProgram } from '@/lib/contentful';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Check, Clock, Users, Calendar } from 'lucide-react';
-import { notFound } from 'next/navigation';
+
+type Props = {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
+  const searchParams = await props.searchParams;
+  const program = await getProgram(params.slug);
+
+  if (!program) {
+    return {
+      title: 'Program Not Found',
+    };
+  }
+
+  return {
+    title: `${program.title} | The Mindfulness Toolbox`,
+    description: program.description,
+  };
+}
 
 const programs = {
   'school-integration': {
@@ -121,7 +145,9 @@ const programs = {
   }
 };
 
-export default function ProgramPage({ params }: { params: { slug: string } }) {
+export default async function ProgramPage(props: Props) {
+  const params = await props.params;
+  const searchParams = await props.searchParams;
   const program = programs[params.slug as keyof typeof programs];
 
   if (!program) {

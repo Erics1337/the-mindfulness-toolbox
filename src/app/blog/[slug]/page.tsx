@@ -64,16 +64,14 @@ const richTextOptions = {
   },
 };
 
-type PageProps = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+type Props = {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
+  const searchParams = await props.searchParams;
   const post = await getBlogPost(params.slug);
   
   if (!post) {
@@ -88,11 +86,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function BlogPostPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default async function BlogPostPage(props: Props) {
+  const params = await props.params;
+  const searchParams = await props.searchParams;
   const post = await getBlogPost(params.slug);
 
   if (!post) {
