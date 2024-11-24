@@ -64,21 +64,17 @@ const richTextOptions = {
   },
 };
 
-interface Props {
-  params: {
-    slug: string;
-  };
+type PageProps = {
+  params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
-}
+};
 
-// Add generateMetadata function for better SEO
-export async function generateMetadata(
-  { params }: Props
-): Promise<Metadata> {
-  const slug = params?.slug;
-  if (!slug) return { title: 'Blog Post Not Found' };
-  
-  const post = await getBlogPost(slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const post = await getBlogPost(params.slug);
   
   if (!post) {
     return {
@@ -92,11 +88,12 @@ export async function generateMetadata(
   };
 }
 
-export default async function BlogPostPage({ params }: Props) {
-  const slug = params?.slug;
-  if (!slug) return null;
-  
-  const post = await getBlogPost(slug);
+export default async function BlogPostPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const post = await getBlogPost(params.slug);
 
   if (!post) {
     notFound();
